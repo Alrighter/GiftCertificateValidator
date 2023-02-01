@@ -32,13 +32,13 @@ public class DatabaseRepository : IDatabaseRepository
     }
 
     //Create table if not exists
-    public async Task<bool> CreateTableIfNotExistsAsync()
+    public bool CreateTableIfNotExistsAsync()
     {
         try
         {
-            await using var connection = await _dbConnection.GetConnection();
-            await connection.OpenAsync();
-            await using var command = connection.CreateCommand();
+             using var connection =  _dbConnection.GetConnection();
+             connection.OpenAsync();
+             using var command = connection.CreateCommand();
             command.CommandText = @"CREATE TABLE GiftCertificates (
                                                 Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                                                 Code TEXT NULL,

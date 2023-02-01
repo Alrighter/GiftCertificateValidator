@@ -1,4 +1,5 @@
 ﻿using GiftCertificateValidator.Maui.Services.CertificateTable;
+using GiftCertificateValidator.Maui.Services.Database;
 using GiftCertificateValidator.Maui.View;
 using GiftCertificateValidator.Maui.ViewModel;
 using GiftCertificateValidator.Persistence.DB;
@@ -45,9 +46,13 @@ public static class MauiProgram
         builder.Services.AddTransient<DatabaseConnection>();
 
         builder.Services.AddTransient<IDatabaseRepository, DatabaseRepository>();
+        builder.Services.AddTransient<IDatabaseService, DatabaseService>();
 
         builder.Services.AddTransient<ICertificateRepository, CertificateRepository>();
         builder.Services.AddTransient<ICertificateService, CertificateService>();
+
+       
+        
 
 #if DEBUG
         builder.Logging.AddDebug();

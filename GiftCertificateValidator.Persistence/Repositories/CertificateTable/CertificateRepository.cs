@@ -18,7 +18,7 @@ public class CertificateRepository : ICertificateRepository
     {
         try
         {
-            var connection = await _dbConnection.GetConnection();
+            var connection = _dbConnection.GetConnection();
             var certificate = await connection
                 .QueryFirstOrDefaultAsync<GiftCertificate>("SELECT * FROM GiftCertificate WHERE Code = @Code",
                     new { Code = certificateCode });
@@ -35,7 +35,7 @@ public class CertificateRepository : ICertificateRepository
     {
         try
         {
-            var connection = await _dbConnection.GetConnection();
+            var connection = _dbConnection.GetConnection();
             var certificates = await connection.QueryAsync<GiftCertificate>("SELECT * FROM GiftCertificate");
             return certificates;
         }
@@ -50,7 +50,7 @@ public class CertificateRepository : ICertificateRepository
     {
         try
         {
-            var connection = await _dbConnection.GetConnection();
+            var connection = _dbConnection.GetConnection();
             var result = await connection
                 .ExecuteAsync(@"INSERT INTO GiftCertificate (
                                         Code, 
@@ -80,7 +80,7 @@ public class CertificateRepository : ICertificateRepository
     {
         try
         {
-            var connection = await _dbConnection.GetConnection();
+            var connection = _dbConnection.GetConnection();
             var result = await connection
                 .ExecuteAsync(@"UPDATE GiftCertificate SET 
                                         Name = @Name, 
@@ -104,7 +104,7 @@ public class CertificateRepository : ICertificateRepository
     {
         try
         {
-            var connection = await _dbConnection.GetConnection();
+            var connection = _dbConnection.GetConnection();
             var result = await connection
                 .ExecuteAsync(@"UPDATE GiftCertificate SET 
                                         IsUsed = 1, 

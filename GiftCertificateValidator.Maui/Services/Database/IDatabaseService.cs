@@ -3,5 +3,5 @@
 internal interface IDatabaseService
 {
     bool CreateDatabaseIfNotExists();
-    Task<bool> CreateTableIfNotExistsAsync();
+    bool CreateTableIfNotExistsAsync();
 }

@@ -3,5 +3,5 @@
 public interface IDatabaseRepository
 {
     bool CreateDatabaseIfNotExists();
-    Task<bool> CreateTableIfNotExistsAsync();
+    bool CreateTableIfNotExistsAsync();
 }

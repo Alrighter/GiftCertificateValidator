@@ -16,8 +16,8 @@ internal class DatabaseService : IDatabaseService
         return _databaseRepository.CreateDatabaseIfNotExists();
     }
 
-    public async Task<bool> CreateTableIfNotExistsAsync()
+    public bool CreateTableIfNotExistsAsync()
     {
-        return await _databaseRepository.CreateTableIfNotExistsAsync();
+        return _databaseRepository.CreateTableIfNotExistsAsync();
     }
 }

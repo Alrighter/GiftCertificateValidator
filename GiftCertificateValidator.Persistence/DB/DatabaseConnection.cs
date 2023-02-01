@@ -12,10 +12,10 @@ public class DatabaseConnection
     }
 
     //Create databaseConnection
-    public Task<SqliteConnection> GetConnection()
+    public SqliteConnection GetConnection()
     {
         var databasePath = GetDatabasePath("GiftCertificateValidator.db3");
         var connection = new SqliteConnection(databasePath);
-        return Task.FromResult(connection);
+        return connection;
     }
 }

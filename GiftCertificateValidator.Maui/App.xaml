@@ -1,7 +1,7 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:GiftCertificateValidator.Maui"
              x:Class="GiftCertificateValidator.Maui.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -16,42 +16,49 @@
             <Color x:Key="LabelDarkText">#F1F1F1</Color>
 
             <Style TargetType="Page" x:Key="BackgroundColor">
-                <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground} }" />
+                <Setter Property="Background"
+                        Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground} }" />
             </Style>
 
             <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
-                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor} }" />
-                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource LabelLightText}, Dark={StaticResource LabelDarkText} }" />
+                <Setter Property="BarBackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor} }" />
+                <Setter Property="BarTextColor"
+                        Value="{AppThemeBinding Light={StaticResource LabelLightText}, Dark={StaticResource LabelDarkText} }" />
             </Style>
 
             <Style TargetType="Label" x:Key="LabelStyle">
-                <Setter Property="FontFamily" Value="OpenSansRegular"/>
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelLightText}, Dark={StaticResource LabelDarkText} }" />
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light={StaticResource LabelLightText}, Dark={StaticResource LabelDarkText} }" />
             </Style>
 
             <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}" x:Key="SmallLabel">
-                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontSize" Value="12" />
             </Style>
 
             <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}" x:Key="MediumLAbel">
-                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontSize" Value="16" />
             </Style>
 
             <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}" x:Key="LargeLabel">
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontSize" Value="20" />
             </Style>
 
             <Style TargetType="Button" x:Key="ButtonStyle">
-                <Setter Property="FontFamily" Value="OpenSansRegular"/>
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelLightText}, Dark={StaticResource LabelDarkText} }" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor} }" />
-                <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="CornerRadius" Value="40"/>
-                <Setter Property="HeightRequest" Value="40"></Setter>
+                <Setter Property="FontFamily" Value="OpenSansRegular" />
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light={StaticResource LabelLightText}, Dark={StaticResource LabelDarkText} }" />
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor} }" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="CornerRadius" Value="40" />
+                <Setter Property="HeightRequest" Value="40" />
             </Style>
 
             <Style TargetType="RefreshView" x:Key="RefreshViewStyle">
-                <Setter Property="RefreshColor" Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor} }" />
+                <Setter Property="RefreshColor"
+                        Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor} }" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

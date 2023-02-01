@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:GiftCertificateValidator.Maui.ViewModel"
@@ -6,19 +7,19 @@
              Title="{Binding Title}"
              Style="{StaticResource BackgroundColor}"
              x:DataType="viewmodels:MainPageViewModel">
-    
+
     <VerticalStackLayout HorizontalOptions="Center"
                          VerticalOptions="Center"
                          Spacing="20">
-        <Button Style="{StaticResource ButtonStyle}" 
+        <Button Style="{StaticResource ButtonStyle}"
                 Text="Add certificate"
-                Command="{Binding GoToAddCertificateCommand}"/>
-        <Button Style="{StaticResource ButtonStyle}" 
+                Command="{Binding GoToAddCertificateCommand}" />
+        <Button Style="{StaticResource ButtonStyle}"
                 Text="Check certificate"
-                Command="{Binding GoToCheckCertificateCommand}"/>
+                Command="{Binding GoToCheckCertificateCommand}" />
         <Button Style="{StaticResource ButtonStyle}" Text="Get certificates"
-                Command="{Binding GoToCertificateListCommand}"/>
+                Command="{Binding GoToCertificateListCommand}" />
     </VerticalStackLayout>
-    
+
 
 </ContentPage>

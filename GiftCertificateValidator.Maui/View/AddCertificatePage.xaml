@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:GiftCertificateValidator.Maui.ViewModel"
@@ -11,5 +12,16 @@
             SemanticProperties.HeadingLevel="Level1"
             FontSize="32"
             HorizontalOptions="Center" />
+        <Label Style="{StaticResource LargeLabel}" Text="Name" />
+        <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding Name}" />
+        <Label Style="{StaticResource LargeLabel}" Text="Description" />
+        <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding Description}" />
+        <Label Style="{StaticResource LargeLabel}" Text="Discount" />
+        <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding Discount}" />
+        <Label Style="{StaticResource LargeLabel}" Text="DateUsed" />
+        <DatePicker Style="{StaticResource LargeLabel}" Date="{Binding ValidTo}" />
+        <Button Command="{Binding CreateNewCertificateCommand}"
+                Text="Create"
+                Style="{StaticResource ButtonStyle}" />
     </VerticalStackLayout>
 </ContentPage>

@@ -2,11 +2,11 @@
 
 namespace GiftCertificateValidator.Maui.ViewModel;
 
-public class ScanCertificateViewModel : BaseViewModel
+public class CheckCertificateViewModel : BaseViewModel
 {
     private string _scannedQr;
 
-    public ScanCertificateViewModel()
+    public CheckCertificateViewModel()
     {
         Title = "Scan GiftCertificate";
     }
@@ -22,15 +22,15 @@ public class ScanCertificateViewModel : BaseViewModel
 
             _scannedQr = value;
             OnPropertyChanged();
-            _ = GoToAddCertificate();
+            _ = GoToDetailsPage();
         }
     }
 
-    private async Task GoToAddCertificate()
+    private async Task GoToDetailsPage()
     {
         if (string.IsNullOrWhiteSpace(ScannedQr))
             return;
 
-        await Shell.Current.GoToAsync($"{nameof(AddCertificatePage)}?Code={ScannedQr}");
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}?Code={ScannedQr}");
     }
 }

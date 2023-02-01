@@ -5,10 +5,10 @@ namespace GiftCertificateValidator.Maui.View;
 
 public partial class ScanCertificatePage : ContentPage
 {
-    ScanCertificateViewModel _viewModel;
+    private readonly ScanCertificateViewModel _viewModel;
 
-	public ScanCertificatePage(ScanCertificateViewModel viewModel)
-	{
+    public ScanCertificatePage(ScanCertificateViewModel viewModel)
+    {
         InitializeComponent();
         _viewModel = viewModel;
         BindingContext = _viewModel;
@@ -23,9 +23,6 @@ public partial class ScanCertificatePage : ContentPage
 
     private void Scanner(object sender, BarcodeDetectionEventArgs e)
     {
-        Dispatcher.Dispatch(() =>
-        {
-            _viewModel.ScannedQr = $"{e.Results[0].Value} {e.Results[0].Format}";
-        });
+        Dispatcher.Dispatch(() => { _viewModel.ScannedQr = $"{e.Results[0].Value} {e.Results[0].Format}"; });
     }
 }

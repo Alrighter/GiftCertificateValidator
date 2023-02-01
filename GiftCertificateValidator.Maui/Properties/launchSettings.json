@@ -4,5 +4,8 @@
       "commandName": "MsixPackage",
       "nativeDebugging": false
     }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=GiftCertificateValidator;Trusted_Connection=True;"
   }
 }

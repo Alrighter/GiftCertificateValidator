@@ -7,23 +7,23 @@ public partial class MainPageViewModel : BaseViewModel
 {
     public MainPageViewModel()
     {
-        Title = "Gift Certificate Validator";
+        Title = "Gift GiftCertificate Validator";
     }
 
     [RelayCommand]
-    async Task GoToAddCertificate()
+    private async Task GoToAddCertificate()
     {
         await Shell.Current.GoToAsync(nameof(ScanCertificatePage));
     }
 
     [RelayCommand]
-    async Task GoToCheckCertificate()
+    private async Task GoToCheckCertificate()
     {
         await Shell.Current.GoToAsync(nameof(CheckCertificatePage));
     }
 
     [RelayCommand]
-    async Task GoToCertificateList()
+    private async Task GoToCertificateList()
     {
         await Shell.Current.GoToAsync(nameof(CertificateListPage));
     }

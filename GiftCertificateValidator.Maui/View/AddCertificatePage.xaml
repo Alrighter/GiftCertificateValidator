@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:GiftCertificateValidator.Maui.ViewModel"
+             x:Class="GiftCertificateValidator.Maui.View.AddCertificatePage"
+             x:DataType="viewModel:AddCertificateViewModel"
+             Title="{Binding Title}">
+    <VerticalStackLayout>
+        <Label
+            Text="{Binding CertificateCode}"
+            SemanticProperties.HeadingLevel="Level1"
+            FontSize="32"
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -4,9 +4,9 @@ namespace GiftCertificateValidator.Persistence.Repositories.CertificateTable;
 
 public interface ICertificateRepository
 {
-    Task<GiftCertificate> GetCertificate(string certificateCode);
-    Task<IEnumerable<GiftCertificate>> GetCertificates();
-    Task<bool> AddCertificate(GiftCertificate certificate);
-    Task<bool> UpdateCertificate(GiftCertificate certificate);
-    Task<bool> ChangeCertificateStatus(string certificateCode);
+    GiftCertificate GetCertificate(string certificateCode);
+    IEnumerable<GiftCertificate> GetCertificates();
+    bool AddCertificate(GiftCertificate certificate);
+    bool UpdateCertificate(GiftCertificate certificate);
+    bool ChangeCertificateStatus(string certificateCode);
 }

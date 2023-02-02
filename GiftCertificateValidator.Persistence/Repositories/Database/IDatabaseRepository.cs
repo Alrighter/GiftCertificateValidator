@@ -3,5 +3,5 @@
 public interface IDatabaseRepository
 {
     bool CreateDatabaseIfNotExists();
-    bool CreateTableIfNotExistsAsync();
+    bool CreateGiftCertificateTable();
 }

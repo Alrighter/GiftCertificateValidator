@@ -1,31 +1,39 @@
-﻿using GiftCertificateValidator.Domain.Model;
+﻿using GiftCertificateValidator.Maui.Model;
+using GiftCertificateValidator.Maui.Repositories.CertificateTable;
 
 namespace GiftCertificateValidator.Maui.Services.CertificateTable;
 
 internal class CertificateService : ICertificateService
 {
-    public Task<bool> AddCertificate(GiftCertificate certificate)
+    private readonly ICertificateRepository _certificateRepository;
+
+    public CertificateService(ICertificateRepository certificateRepository)
     {
-        throw new NotImplementedException();
+        _certificateRepository = certificateRepository;
     }
 
-    public Task<bool> ChangeCertificateStatus(string certificateCode)
+    public async Task<GiftCertificate> GetCertificateAsync(string certificateCode)
     {
-        throw new NotImplementedException();
+        return await _certificateRepository.GetCertificateAsync(certificateCode);
     }
 
-    public Task<GiftCertificate> GetCertificate(string certificateCode)
+    public async Task<IEnumerable<GiftCertificate>> GetCertificatesAsync()
     {
-        throw new NotImplementedException();
+        return await _certificateRepository.GetCertificatesAsync();
     }
 
-    public Task<IEnumerable<GiftCertificate>> GetCertificates()
+    public async Task<bool> AddCertificateAsync(GiftCertificate certificate)
     {
-        throw new NotImplementedException();
+        return await _certificateRepository.AddCertificateAsync(certificate);
     }
 
-    public Task<bool> UpdateCertificate(GiftCertificate certificate)
+    public async Task<bool> UpdateCertificateAsync(GiftCertificate certificate)
     {
-        throw new NotImplementedException();
+        return await _certificateRepository.UpdateCertificateAsync(certificate);
+    }
+
+    public async Task<bool> ChangeCertificateStatusAsync(string certificateCode)
+    {
+        return await _certificateRepository.ChangeCertificateStatusAsync(certificateCode);
     }
 }

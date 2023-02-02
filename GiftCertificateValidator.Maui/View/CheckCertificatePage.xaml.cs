@@ -9,6 +9,7 @@ public partial class CheckCertificatePage : ContentPage
 
     public CheckCertificatePage(CheckCertificateViewModel viewmodel)
     {
+        InitializeComponent();
         _viewModel = viewmodel;
         BindingContext = _viewModel;
 

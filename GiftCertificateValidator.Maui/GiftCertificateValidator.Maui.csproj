@@ -53,12 +53,10 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
+		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.4" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.3.0-preview.1" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.3.0-preview.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\GiftCertificateValidator.Persistence\GiftCertificateValidator.Persistence.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

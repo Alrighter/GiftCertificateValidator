@@ -1,21 +1,28 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Microsoft.VisualBasic.FileIO;
+using SQLite;
 
 namespace GiftCertificateValidator.Persistence.DB;
 
 public class DatabaseConnection
 {
-    public string GetDatabasePath(string filename)
-    {
-        var libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        var path = Path.Combine(libraryPath, filename);
-        return path;
-    }
+    public const string DatabaseFilename = "GiftCertificateValidator.db3";
+
+    public const SQLiteOpenFlags Flags =
+        // open the database in read/write mode
+        SQLiteOpenFlags.ReadWrite |
+        // create the database if it doesn't exist
+        SQLiteOpenFlags.Create |
+        // enable multi-threaded database access
+        SQLiteOpenFlags.SharedCache;
+
+    private static string DatabasePath =>
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GiftCertificateValidator.db");
 
     //Create databaseConnection
-    public SqliteConnection GetConnection()
+    public SQLiteConnection GetConnection()
     {
-        var databasePath = GetDatabasePath("GiftCertificateValidator.db3");
-        var connection = new SqliteConnection(databasePath);
+        var databasePath = DatabasePath;
+        var connection = new SQLiteConnection(databasePath);
         return connection;
     }
 }

@@ -1,8 +1,11 @@
 ﻿#nullable enable
-namespace GiftCertificateValidator.Domain.Model;
+using SQLite;
+
+namespace GiftCertificateValidator.Maui.Model;
 
 public class GiftCertificate
 {
+    [AutoIncrement, PrimaryKey]
     public int? Id { get; set; }
     public string? Code { get; set; }
     public string? Name { get; set; }

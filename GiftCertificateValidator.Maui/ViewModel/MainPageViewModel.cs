@@ -5,9 +5,20 @@ namespace GiftCertificateValidator.Maui.ViewModel;
 
 public partial class MainPageViewModel : BaseViewModel
 {
+    private bool _isInitialized;
+
     public MainPageViewModel()
     {
         Title = "Gift GiftCertificate Validator";
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        if (_isInitialized)
+            return;
+
+        _isInitialized = true;
     }
 
     [RelayCommand]

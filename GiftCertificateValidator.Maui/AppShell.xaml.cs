@@ -11,6 +11,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         Routing.RegisterRoute(nameof(ScanCertificatePage), typeof(ScanCertificatePage));
         Routing.RegisterRoute(nameof(CheckCertificatePage), typeof(CheckCertificatePage));
+        Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
         Routing.RegisterRoute(nameof(CertificateListPage), typeof(CertificateListPage));
         Routing.RegisterRoute(nameof(AddCertificatePage), typeof(AddCertificatePage));
     }

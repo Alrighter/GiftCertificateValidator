@@ -1,8 +1,8 @@
 ﻿using GiftCertificateValidator.Maui.Model;
 
-namespace GiftCertificateValidator.Maui.Services.CertificateTable;
+namespace GiftCertificateValidator.Maui.Repositories.CertificateTable;
 
-public interface ICertificateService
+public interface ICertificateRepository
 {
     Task<GiftCertificate> GetCertificateAsync(string certificateCode);
     Task<IEnumerable<GiftCertificate>> GetCertificatesAsync();

@@ -1,24 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using GiftCertificateValidator.Domain.Model;
-using GiftCertificateValidator.Persistence.Repositories.CertificateTable;
+using GiftCertificateValidator.Maui.Model;
+using GiftCertificateValidator.Maui.Services.CertificateTable;
 
 namespace GiftCertificateValidator.Maui.ViewModel;
 
 [QueryProperty(nameof(CertificateCode), "Code")]
 public partial class AddCertificateViewModel : BaseViewModel
 {
-    private readonly ICertificateRepository _certificateRepository;
+    private readonly ICertificateService _certificateService;
 
     [ObservableProperty] private string _certificateCode;
     [ObservableProperty] private string _description;
     [ObservableProperty] private string _discount;
     [ObservableProperty] private string _name;
-    [ObservableProperty] private DateTime _validTo = DateTime.Now.AddYears(1);
 
-    public AddCertificateViewModel(ICertificateRepository certificateRepository)
+    public AddCertificateViewModel(ICertificateService certificateService)
     {
-        _certificateRepository = certificateRepository;
+        _certificateService = certificateService;
         Title = "Add GiftCertificate";
     }
 
@@ -35,10 +34,15 @@ public partial class AddCertificateViewModel : BaseViewModel
             IsUsed = true
         };
 
-        if (await _certificateRepository.AddCertificate(certificate))
+        if (await _certificateService.AddCertificateAsync(certificate))
+        {
             await Shell.Current.DisplayAlert("Success", "GiftCertificate added successfully", "OK");
+        }
         else
+        {
             await Shell.Current.DisplayAlert("Error", "Error adding certificate", "OK");
+            return;
+        }
 
 
         await Shell.Current.GoToAsync("//MainPage", true);

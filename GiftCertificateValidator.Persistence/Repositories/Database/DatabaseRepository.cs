@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using GiftCertificateValidator.Domain.Model;
 using GiftCertificateValidator.Persistence.DB;
+using SQLite;
 
 namespace GiftCertificateValidator.Persistence.Repositories.Database;
 
@@ -17,12 +19,10 @@ public class DatabaseRepository : IDatabaseRepository
     {
         try
         {
-            var databasePath = _dbConnection.GetDatabasePath("GiftCertificateValidator.db3");
+            var conn = _dbConnection.GetConnection();
+            var result = conn.CreateTable<GiftCertificate>();
+            return result.Equals(CreateTableResult.Created);
 
-            if (!File.Exists(databasePath))
-                File.WriteAllBytes(databasePath, Array.Empty<byte>());
-
-            return File.Exists(databasePath);
         }
         catch (Exception e)
         {
@@ -31,31 +31,18 @@ public class DatabaseRepository : IDatabaseRepository
         }
     }
 
-    //Create table if not exists
-    public bool CreateTableIfNotExistsAsync()
+    public bool CreateGiftCertificateTable()
     {
         try
         {
-             using var connection =  _dbConnection.GetConnection();
-             connection.OpenAsync();
-             using var command = connection.CreateCommand();
-            command.CommandText = @"CREATE TABLE GiftCertificates (
-                                                Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                                Code TEXT NULL,
-                                                Name TEXT NULL,
-                                                Description TEXT NULL,
-                                                Image TEXT NULL,
-                                                Discount TEXT NULL,
-                                                DateCreated DATETIME NULL,
-                                                DateUsed DATETIME NULL,
-                                                IsUsed INTEGER NULL);";
-            var result = command.ExecuteNonQuery();
+            var connection = _dbConnection.GetConnection();
+            var result = connection.CreateTable<GiftCertificate>();
 
-            return result > 0;
+            return result == CreateTableResult.Created;
         }
         catch (Exception e)
         {
-            Debug.WriteLine("Error creating table: " + e.Message);
+            Debug.WriteLine("Error creating GiftCertificate table: " + e.Message);
             return false;
         }
     }

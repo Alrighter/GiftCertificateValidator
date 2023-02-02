@@ -11,7 +11,6 @@ public class ScanCertificateViewModel : BaseViewModel
         Title = "Scan GiftCertificate";
     }
 
-    //call async method when scannedQr changed
     public string ScannedQr
     {
         get => _scannedQr;

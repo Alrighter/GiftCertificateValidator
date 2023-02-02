@@ -5,14 +5,6 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftCertificateValidator.Maui", "GiftCertificateValidator.Maui\GiftCertificateValidator.Maui.csproj", "{BD139B98-AB45-46A8-A645-5E84FE22CC20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftCertificateValidator.Persistence", "GiftCertificateValidator.Persistence\GiftCertificateValidator.Persistence.csproj", "{268A52BB-6116-494F-9974-77A4FEFABAB3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftCertificateValidator.Domain", "GiftCertificateValidator.Domain\GiftCertificateValidator.Domain.csproj", "{052D8453-8576-419E-AC9C-45A6FE1F03E9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FCEB65A8-A8C8-4FA3-92CF-D0A9702C0AE3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{603B7BF4-760A-41D8-9014-03F47F1B115E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{5B0AA5F4-293A-43F8-8A11-38A4EDB96D8A}"
 EndProject
 Global
@@ -27,22 +19,12 @@ Global
 		{BD139B98-AB45-46A8-A645-5E84FE22CC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD139B98-AB45-46A8-A645-5E84FE22CC20}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD139B98-AB45-46A8-A645-5E84FE22CC20}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{268A52BB-6116-494F-9974-77A4FEFABAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{268A52BB-6116-494F-9974-77A4FEFABAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{268A52BB-6116-494F-9974-77A4FEFABAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{268A52BB-6116-494F-9974-77A4FEFABAB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{052D8453-8576-419E-AC9C-45A6FE1F03E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{052D8453-8576-419E-AC9C-45A6FE1F03E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{052D8453-8576-419E-AC9C-45A6FE1F03E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{052D8453-8576-419E-AC9C-45A6FE1F03E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BD139B98-AB45-46A8-A645-5E84FE22CC20} = {5B0AA5F4-293A-43F8-8A11-38A4EDB96D8A}
-		{268A52BB-6116-494F-9974-77A4FEFABAB3} = {603B7BF4-760A-41D8-9014-03F47F1B115E}
-		{052D8453-8576-419E-AC9C-45A6FE1F03E9} = {FCEB65A8-A8C8-4FA3-92CF-D0A9702C0AE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

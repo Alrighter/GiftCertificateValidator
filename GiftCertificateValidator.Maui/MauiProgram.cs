@@ -1,10 +1,8 @@
-﻿using GiftCertificateValidator.Maui.Services.CertificateTable;
-using GiftCertificateValidator.Maui.Services.Database;
+﻿using GiftCertificateValidator.Maui.DB;
+using GiftCertificateValidator.Maui.Repositories.CertificateTable;
+using GiftCertificateValidator.Maui.Services.CertificateTable;
 using GiftCertificateValidator.Maui.View;
 using GiftCertificateValidator.Maui.ViewModel;
-using GiftCertificateValidator.Persistence.DB;
-using GiftCertificateValidator.Persistence.Repositories.CertificateTable;
-using GiftCertificateValidator.Persistence.Repositories.Database;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -42,17 +40,11 @@ public static class MauiProgram
         builder.Services.AddTransient<DetailsPage>();
         builder.Services.AddTransient<DetailsViewModel>();
 
-
-        builder.Services.AddTransient<DatabaseConnection>();
-
-        builder.Services.AddTransient<IDatabaseRepository, DatabaseRepository>();
-        builder.Services.AddTransient<IDatabaseService, DatabaseService>();
+        builder.Services.AddSingleton<DatabaseConnection>();
 
         builder.Services.AddTransient<ICertificateRepository, CertificateRepository>();
         builder.Services.AddTransient<ICertificateService, CertificateService>();
 
-       
-        
 
 #if DEBUG
         builder.Logging.AddDebug();

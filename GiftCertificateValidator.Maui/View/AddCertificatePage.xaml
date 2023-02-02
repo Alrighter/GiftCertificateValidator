@@ -18,8 +18,6 @@
         <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding Description}" />
         <Label Style="{StaticResource LargeLabel}" Text="Discount" />
         <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding Discount}" />
-        <Label Style="{StaticResource LargeLabel}" Text="DateUsed" />
-        <DatePicker Style="{StaticResource LargeLabel}" Date="{Binding ValidTo}" />
         <Button Command="{Binding CreateNewCertificateCommand}"
                 Text="Create"
                 Style="{StaticResource ButtonStyle}" />

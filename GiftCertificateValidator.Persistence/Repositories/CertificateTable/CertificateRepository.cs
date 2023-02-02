@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
-using Dapper;
 using GiftCertificateValidator.Domain.Model;
 using GiftCertificateValidator.Persistence.DB;
+using SQLite;
 
 namespace GiftCertificateValidator.Persistence.Repositories.CertificateTable;
 
@@ -14,14 +14,12 @@ public class CertificateRepository : ICertificateRepository
         _dbConnection = dbConnection;
     }
 
-    public async Task<GiftCertificate> GetCertificate(string certificateCode)
+    public GiftCertificate GetCertificate(string certificateCode)
     {
         try
         {
             var connection = _dbConnection.GetConnection();
-            var certificate = await connection
-                .QueryFirstOrDefaultAsync<GiftCertificate>("SELECT * FROM GiftCertificate WHERE Code = @Code",
-                    new { Code = certificateCode });
+            var certificate = connection.Table<GiftCertificate>().FirstOrDefault(x => x.Code == certificateCode);
             return certificate;
         }
         catch (Exception e)
@@ -31,12 +29,12 @@ public class CertificateRepository : ICertificateRepository
         }
     }
 
-    public async Task<IEnumerable<GiftCertificate>> GetCertificates()
+    public IEnumerable<GiftCertificate> GetCertificates()
     {
         try
         {
             var connection = _dbConnection.GetConnection();
-            var certificates = await connection.QueryAsync<GiftCertificate>("SELECT * FROM GiftCertificate");
+            var certificates = connection.Table<GiftCertificate>().AsEnumerable();
             return certificates;
         }
         catch (Exception e)
@@ -46,27 +44,12 @@ public class CertificateRepository : ICertificateRepository
         }
     }
 
-    public async Task<bool> AddCertificate(GiftCertificate certificate)
+    public bool AddCertificate(GiftCertificate certificate)
     {
         try
         {
-            var connection = _dbConnection.GetConnection();
-            var result = await connection
-                .ExecuteAsync(@"INSERT INTO GiftCertificate (
-                                        Code, 
-                                        Name, 
-                                        Description, 
-                                        Discount, 
-                                        DateCreated, 
-                                        IsUsed) 
-                                        VALUES (
-                                        @Code, 
-                                        @Name, 
-                                        @Description, 
-                                        @Discount, 
-                                        @DateCreated, 
-                                        @IsUsed)",
-                    certificate);
+            using var connection = _dbConnection.GetConnection();
+            var result = connection.Insert(certificate);
             return result > 0;
         }
         catch (Exception e)
@@ -76,21 +59,12 @@ public class CertificateRepository : ICertificateRepository
         }
     }
 
-    public async Task<bool> UpdateCertificate(GiftCertificate certificate)
+    public bool UpdateCertificate(GiftCertificate certificate)
     {
         try
         {
             var connection = _dbConnection.GetConnection();
-            var result = await connection
-                .ExecuteAsync(@"UPDATE GiftCertificate SET 
-                                        Name = @Name, 
-                                        Description = @Description, 
-                                        Discount = @Discount, 
-                                        DateCreated = @DateCreated, 
-                                        IsUsed = @IsUsed 
-                                        WHERE Code = @Code",
-                    certificate);
-
+            var result = connection.Update(certificate);
             return result > 0;
         }
         catch (Exception e)
@@ -100,18 +74,15 @@ public class CertificateRepository : ICertificateRepository
         }
     }
 
-    public async Task<bool> ChangeCertificateStatus(string certificateCode)
+    public bool ChangeCertificateStatus(string certificateCode)
     {
         try
         {
             var connection = _dbConnection.GetConnection();
-            var result = await connection
-                .ExecuteAsync(@"UPDATE GiftCertificate SET 
-                                        IsUsed = 1, 
-                                        DateUsed = @DateUsed 
-                                        WHERE Code = @Code",
-                    new { Code = certificateCode, DateUsed = DateTime.Now });
-
+            var certificate = connection.Table<GiftCertificate>().FirstOrDefault(x => x.Code == certificateCode);
+            certificate.IsUsed = !certificate.IsUsed;
+            certificate.DateUsed = DateTime.Now;
+            var result = connection.Update(certificate);
             return result > 0;
         }
         catch (Exception e)

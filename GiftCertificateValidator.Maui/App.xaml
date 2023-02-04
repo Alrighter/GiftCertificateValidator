@@ -37,7 +37,7 @@
                 <Setter Property="FontSize" Value="12" />
             </Style>
 
-            <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}" x:Key="MediumLAbel">
+            <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}" x:Key="MediumLabel">
                 <Setter Property="FontSize" Value="16" />
             </Style>
 
@@ -60,6 +60,7 @@
                 <Setter Property="RefreshColor"
                         Value="{AppThemeBinding Light={StaticResource PrimaryColor}, Dark={StaticResource PrimaryDarkColor} }" />
             </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

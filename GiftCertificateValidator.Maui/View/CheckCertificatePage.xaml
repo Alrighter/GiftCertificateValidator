@@ -7,7 +7,8 @@
              Title="CheckCertificatePage">
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
         <controls:CameraBarcodeReaderView x:Name="barcodeReader"
-                                          WidthRequest="300" HeightRequest="300"
-                                          IsDetecting="True" IsTorchOn="False" BarcodesDetected="Scanner" />
+                                          IsDetecting="True"
+                                          IsTorchOn="False"
+                                          BarcodesDetected="Scanner" />
     </VerticalStackLayout>
 </ContentPage>

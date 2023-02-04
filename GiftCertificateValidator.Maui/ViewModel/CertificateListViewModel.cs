@@ -1,5 +1,39 @@
-﻿namespace GiftCertificateValidator.Maui.ViewModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using GiftCertificateValidator.Maui.Model;
+using GiftCertificateValidator.Maui.Services.CertificateTable;
+using GiftCertificateValidator.Maui.View;
 
-public class CertificateListViewModel : BaseViewModel
+namespace GiftCertificateValidator.Maui.ViewModel;
+
+public partial class CertificateListViewModel : BaseViewModel
 {
+    private readonly ICertificateService _certificateService;
+    [ObservableProperty] private ObservableCollection<GiftCertificate> _certificates;
+
+    public CertificateListViewModel(ICertificateService certificateService)
+    {
+        _certificateService = certificateService;
+        Title = "GiftCertificate List";
+    }
+
+    [RelayCommand]
+    public async Task LoadCertificates()
+    {
+        IsBusy = true;
+        var certificates = await _certificateService.GetCertificatesAsync();
+        Certificates = new ObservableCollection<GiftCertificate>(certificates);
+        IsBusy = false;
+    }
+
+    [RelayCommand]
+    private async Task GoToDetailsPage(GiftCertificate certificate)
+    {
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}",
+            true, new Dictionary<string, object>
+            {
+                {"Certificate", certificate}
+            });
+    }
 }

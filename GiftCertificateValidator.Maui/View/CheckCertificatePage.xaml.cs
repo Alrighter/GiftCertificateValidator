@@ -25,4 +25,12 @@ public partial class CheckCertificatePage : ContentPage
     {
         Dispatcher.Dispatch(() => { _viewModel.ScannedQr = $"{e.Results[0].Value} {e.Results[0].Format}"; });
     }
+
+    protected override void OnDisappearing()
+    {
+        barcodeReader.IsDetecting = false;
+        barcodeReader.CameraLocation = CameraLocation.Front;
+        barcodeReader.CameraLocation = CameraLocation.Rear;
+        base.OnDisappearing();
+    }
 }

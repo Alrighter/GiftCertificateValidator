@@ -12,7 +12,7 @@ public partial class AddCertificateViewModel : BaseViewModel
 
     [ObservableProperty] private string _certificateCode;
     [ObservableProperty] private string _description;
-    [ObservableProperty] private string _discount;
+    [ObservableProperty] private int _discount;
     [ObservableProperty] private string _name;
 
     public AddCertificateViewModel(ICertificateService certificateService)
@@ -31,7 +31,7 @@ public partial class AddCertificateViewModel : BaseViewModel
             Description = Description,
             Discount = Discount,
             DateCreated = DateTime.Now,
-            IsUsed = true
+            IsUsed = false
         };
 
         if (await _certificateService.AddCertificateAsync(certificate))

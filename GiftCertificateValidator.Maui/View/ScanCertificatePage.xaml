@@ -7,9 +7,11 @@
              x:Class="GiftCertificateValidator.Maui.View.ScanCertificatePage"
              x:DataType="viewModel:ScanCertificateViewModel"
              Title="{Binding Title}">
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <controls:CameraBarcodeReaderView x:Name="barcodeReader"
-                                          WidthRequest="300" HeightRequest="300"
-                                          IsDetecting="True" IsTorchOn="False" BarcodesDetected="Scanner" />
+    <VerticalStackLayout HorizontalOptions="Center" 
+                         VerticalOptions="Center">
+            <controls:CameraBarcodeReaderView x:Name="barcodeReader"
+                                              IsDetecting="True" 
+                                              IsTorchOn="False" 
+                                              BarcodesDetected="Scanner" />
     </VerticalStackLayout>
 </ContentPage>

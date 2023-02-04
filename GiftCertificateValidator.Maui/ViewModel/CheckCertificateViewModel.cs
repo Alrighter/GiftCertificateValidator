@@ -1,13 +1,19 @@
-﻿using GiftCertificateValidator.Maui.View;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using GiftCertificateValidator.Maui.Model;
+using GiftCertificateValidator.Maui.Services.CertificateTable;
+using GiftCertificateValidator.Maui.View;
 
 namespace GiftCertificateValidator.Maui.ViewModel;
 
-public class CheckCertificateViewModel : BaseViewModel
+public partial class CheckCertificateViewModel : BaseViewModel
 {
     private string _scannedQr;
+    [ObservableProperty] GiftCertificate _certificate;
+    private readonly ICertificateService _certificateService;
 
-    public CheckCertificateViewModel()
+    public CheckCertificateViewModel(ICertificateService certificateService)
     {
+        _certificateService = certificateService;
         Title = "Scan GiftCertificate";
     }
 
@@ -30,6 +36,13 @@ public class CheckCertificateViewModel : BaseViewModel
         if (string.IsNullOrWhiteSpace(ScannedQr))
             return;
 
-        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}?Code={ScannedQr}");
+        Certificate = await _certificateService.GetCertificateAsync(ScannedQr);
+
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}",
+            true, new Dictionary<string, object>
+            {
+                {"Certificate", Certificate}
+            });
     }
+
 }

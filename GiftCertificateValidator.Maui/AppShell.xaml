@@ -7,20 +7,21 @@
     xmlns:view="clr-namespace:GiftCertificateValidator.Maui.View"
     FlyoutBehavior="Disabled">
 
+
     <TabBar>
-        <Tab Title="Certificates" Icon="{StaticResource IconThree}">
+        <Tab Title="Certificates" Icon="certificate.png">
             <ShellContent
                 Title="Certificates"
                 ContentTemplate="{DataTemplate view:CertificateListPage}"
                 Route="CertificateListPage" />
         </Tab>
-        <Tab Title="Add" Icon="{StaticResource IconOne}">
+        <Tab Title="Add" Icon="add_new_certificate.png">
             <ShellContent
                 Title="Add"
                 ContentTemplate="{DataTemplate view:ScanCertificatePage}"
                 Route="ScanCertificatePage" />
         </Tab>
-        <Tab Title="Check" Icon="{StaticResource IconTwo}">
+        <Tab Title="Check" Icon="check_qr.png">
             <ShellContent
                 Title="Check"
                 ContentTemplate="{DataTemplate view:CheckCertificatePage}"

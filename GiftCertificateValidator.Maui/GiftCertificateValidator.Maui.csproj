@@ -51,6 +51,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\AddNewCertificate.png" />
+	  <None Remove="Resources\Images\certificate.png" />
+	  <None Remove="Resources\Images\checkQr.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
@@ -72,6 +78,12 @@
 	  <MauiXaml Update="View\ScanCertificatePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\TabIcons\add_new_certificate.png" />
+	  <MauiImage Include="Resources\Images\TabIcons\certificate.png" />
+	  <MauiImage Include="Resources\Images\TabIcons\check_qr.png" />
 	</ItemGroup>
 
 </Project>

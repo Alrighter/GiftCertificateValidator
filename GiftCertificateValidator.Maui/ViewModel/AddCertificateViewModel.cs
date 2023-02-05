@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using GiftCertificateValidator.Maui.Model;
 using GiftCertificateValidator.Maui.Services.CertificateTable;
+using GiftCertificateValidator.Maui.View;
 
 namespace GiftCertificateValidator.Maui.ViewModel;
 
@@ -44,7 +45,6 @@ public partial class AddCertificateViewModel : BaseViewModel
             return;
         }
 
-
-        await Shell.Current.GoToAsync("//MainPage", true);
+        await Shell.Current.GoToAsync(nameof(CertificateListPage), true);
     }
 }

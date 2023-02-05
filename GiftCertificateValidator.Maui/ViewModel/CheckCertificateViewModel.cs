@@ -38,6 +38,9 @@ public partial class CheckCertificateViewModel : BaseViewModel
 
         Certificate = await _certificateService.GetCertificateAsync(ScannedQr);
 
+        if (Certificate == null)
+            return;
+
         await Shell.Current.GoToAsync($"{nameof(DetailsPage)}",
             true, new Dictionary<string, object>
             {

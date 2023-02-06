@@ -54,6 +54,7 @@
 	  <None Remove="Resources\Images\AddNewCertificate.png" />
 	  <None Remove="Resources\Images\certificate.png" />
 	  <None Remove="Resources\Images\checkQr.png" />
+	  <None Remove="Resources\Images\not_found.png" />
 	</ItemGroup>
 
 	<ItemGroup>

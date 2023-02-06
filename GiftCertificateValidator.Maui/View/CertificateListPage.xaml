@@ -11,6 +11,13 @@
             <CollectionView ItemsSource="{Binding Certificates}"
                                 SelectionMode="None"
                                 VerticalScrollBarVisibility="Default">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Margin="50,50,50,50" VerticalOptions="Center">
+                        <Image Source="not_found.png"/>
+                        <Label Text="No coupons created already!" Style="{StaticResource LargeLabel}"/>
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame>
@@ -37,9 +44,7 @@
                                 <Label Text="Name" Style="{StaticResource MediumLabel}"/>
                                 <Label Text="{Binding Name}"/>
                                 <Label Text="Date created" Style="{StaticResource MediumLabel}"/>
-                                <Label Text="{Binding DateCreated}"/>
-                                <Label Text="Used" Style="{StaticResource MediumLabel}"/>
-                                <Label Text="{Binding IsUsed}"/>
+                                <Label Text="{Binding DateCreated, StringFormat='{}{0:dd/MM/yyyy об HH:mm}'}"/>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>

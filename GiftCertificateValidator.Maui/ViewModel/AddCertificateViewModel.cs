@@ -13,13 +13,14 @@ public partial class AddCertificateViewModel : BaseViewModel
 
     [ObservableProperty] private string _certificateCode;
     [ObservableProperty] private string _description;
+    [ObservableProperty] private string _phoneNumber;
     [ObservableProperty] private int _discount;
     [ObservableProperty] private string _name;
 
     public AddCertificateViewModel(ICertificateService certificateService)
     {
         _certificateService = certificateService;
-        Title = "Add GiftCertificate";
+        Title = "Add certificate";
     }
 
     [RelayCommand]
@@ -30,21 +31,31 @@ public partial class AddCertificateViewModel : BaseViewModel
             Code = CertificateCode,
             Name = Name,
             Description = Description,
+            PhoneNumber = PhoneNumber,
             Discount = Discount,
             DateCreated = DateTime.Now,
+            DateUsed = null,
             IsUsed = false
         };
 
-        if (await _certificateService.AddCertificateAsync(certificate))
+        var result = await _certificateService.AddCertificateAsync(certificate);
+
+        if (result.Success)
         {
             await Shell.Current.DisplayAlert("Success", "GiftCertificate added successfully", "OK");
         }
         else
         {
+            if (result.Message == "UNIQUE constraint failed: GiftCertificate.Code")
+            {
+                await Shell.Current.DisplayAlert("Error", "Certificate already exists", "OK");
+                return;
+            }
+
             await Shell.Current.DisplayAlert("Error", "Error adding certificate", "OK");
             return;
         }
 
-        await Shell.Current.GoToAsync(nameof(CertificateListPage), true);
+        await Shell.Current.GoToAsync("///ScanCertificatePage", true);
     }
 }

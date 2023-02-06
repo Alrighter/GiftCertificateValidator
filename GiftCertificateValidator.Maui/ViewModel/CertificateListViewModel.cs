@@ -15,14 +15,20 @@ public partial class CertificateListViewModel : BaseViewModel
     public CertificateListViewModel(ICertificateService certificateService)
     {
         _certificateService = certificateService;
-        Title = "GiftCertificate List";
+        Title = "Certificates";
     }
 
     [RelayCommand]
     public async Task LoadCertificates()
     {
         IsBusy = true;
-        var certificates = await _certificateService.GetCertificatesAsync();
+        var response = await _certificateService.GetCertificatesAsync();
+        if (!response.Success)
+        {
+            await Shell.Current.DisplayAlert("Error", "Error loading certificates", "OK");
+            return;
+        }
+        var certificates = response.Data.Reverse();
         Certificates = new ObservableCollection<GiftCertificate>(certificates);
         IsBusy = false;
     }

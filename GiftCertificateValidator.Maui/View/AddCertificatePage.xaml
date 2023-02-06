@@ -18,6 +18,8 @@
         <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding Description}" />
         <Label Style="{StaticResource LargeLabel}" Text="Discount" />
         <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding Discount}" />
+        <Label Style="{StaticResource LargeLabel}" Text="Phone number" />
+        <Entry Placeholder="Enter..." Style="{StaticResource LargeLabel}" Text="{Binding PhoneNumber}" />
         <Button Command="{Binding CreateNewCertificateCommand}"
                 Text="Create"
                 Style="{StaticResource ButtonStyle}" />

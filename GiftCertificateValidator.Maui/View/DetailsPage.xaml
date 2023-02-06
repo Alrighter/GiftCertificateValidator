@@ -5,43 +5,82 @@
              xmlns:viewmodels="clr-namespace:GiftCertificateValidator.Maui.ViewModel;assembly=GiftCertificateValidator.Maui"
              x:Class="GiftCertificateValidator.Maui.View.DetailsPage"
              x:DataType="viewmodels:DetailsViewModel"
-             Title="DetailsPage">
+             Title="{Binding Title}">
 
-    <VerticalStackLayout Padding="20">
-        <Label
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center"
-            HorizontalOptions="Center" />
-        
-        <Frame>
+    <Shell.TitleView>
+        <StackLayout>
+            <Button ImageSource="edit.png"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    BackgroundColor="Transparent"
+                    Margin="10"
+                    Command="{Binding UpdateCertificateCommand}"/>
+        </StackLayout>
+    </Shell.TitleView>
 
-            <Frame.Style>
-                <Style TargetType="Frame">
-                    <Setter Property="BorderColor" Value="Green"/>
-                    <Setter Property="CornerRadius" Value="10" />
-                    <Setter Property="Background" Value="Black"/>
-                    <Style.Triggers>
-                        <DataTrigger TargetType="Frame"  Binding="{Binding GiftCertificate.IsUsed}" Value="true">
-                            <Setter Property="BorderColor" Value="Red"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Frame.Style>
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Frame>
+                <Frame.Style>
+                    <Style TargetType="Frame">
+                        <Setter Property="BorderColor" Value="Green"/>
+                        <Setter Property="CornerRadius" Value="10" />
+                        <Setter Property="Background" Value="Black"/>
+                        <Style.Triggers>
+                            <DataTrigger TargetType="Frame"  Binding="{Binding GiftCertificate.IsUsed}" Value="true">
+                                <Setter Property="BorderColor" Value="Red"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Frame.Style>
 
-            <VerticalStackLayout>
-                <Entry Text="{Binding GiftCertificate.Code}"></Entry>
-                <Label Text="Name" Style="{StaticResource MediumLabel}" />
-                <Entry IsEnabled="False" Text="{Binding GiftCertificate.Name}" Style="{StaticResource LargeLabel}"/>
-                <Label Text="Description" Style="{StaticResource MediumLabel}" />
-                <Entry IsEnabled="False" Text="{Binding GiftCertificate.Description}" Style="{StaticResource LargeLabel}"/>
-                <Label Text="Discount" Style="{StaticResource MediumLabel}" />
-                <Entry IsEnabled="False" Text="{Binding GiftCertificate.Discount}" Style="{StaticResource LargeLabel}"/>
-                <Label Text="DateCreated" Style="{StaticResource MediumLabel}" />
-                <Entry IsEnabled="False" Text="{Binding GiftCertificate.DateCreated, StringFormat='{}{0:dd/MM/yyyy об HH:mm}'}" Style="{StaticResource LargeLabel}"/>
-                <Label Text="IsUsed" Style="{StaticResource MediumLabel}" />
-                <Entry IsEnabled="False" Text="{Binding GiftCertificate.IsUsed}" Style="{StaticResource LargeLabel}"/>
-            </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Name" Style="{StaticResource MediumLabel}" />
+                    <Entry IsEnabled="{Binding IsEditable}" Text="{Binding GiftCertificate.Name}" Style="{StaticResource LargeLabel}"/>
+                    <Label Text="Description" Style="{StaticResource MediumLabel}" />
+                    <Entry IsEnabled="{Binding IsEditable}"  Text="{Binding GiftCertificate.Description}" Style="{StaticResource LargeLabel}"/>
+                    <Label Text="Discount" Style="{StaticResource MediumLabel}" />
+                    <Entry IsEnabled="{Binding IsEditable}"  Text="{Binding GiftCertificate.Discount}" Style="{StaticResource LargeLabel}"/>
+                    <Label Text="Phone number" Style="{StaticResource MediumLabel}" />
+                    <Entry IsEnabled="{Binding IsEditable}"  Text="{Binding GiftCertificate.PhoneNumber}" Style="{StaticResource LargeLabel}"/>
+                    <Label Text="DateCreated" Style="{StaticResource MediumLabel}" />
+                    <Entry IsEnabled="False" Text="{Binding GiftCertificate.DateCreated, StringFormat='{}{0:dd/MM/yyyy об HH:mm}'}" Style="{StaticResource LargeLabel}"/>
+                    <Label Text="DateUsed" Style="{StaticResource MediumLabel}" />
+                    <Entry IsEnabled="False" Text="{Binding GiftCertificate.DateUsed, StringFormat='{}{0:dd/MM/yyyy об HH:mm}'}" Style="{StaticResource LargeLabel}"/>
+                </VerticalStackLayout>
 
-        </Frame>
-    </VerticalStackLayout>
+            </Frame>
+            <Frame>
+                <Frame.Style>
+                    <Style TargetType="Frame">
+                        <Setter Property="HeightRequest" Value="90"></Setter>
+                        <Setter Property="ZIndex" Value="-1"></Setter>
+                        <Setter Property="Margin" Value="0,-30,0,0"></Setter>
+                        <Setter Property="Background" Value="Green"/>
+                        <Setter Property="CornerRadius" Value="10" />
+                        <Style.Triggers>
+                            <DataTrigger TargetType="Frame"  Binding="{Binding GiftCertificate.IsUsed}" Value="true">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Frame.Style>
+                <Frame.GestureRecognizers>
+                    <DragGestureRecognizer/>
+                </Frame.GestureRecognizers>
+                <Label Style="{StaticResource LargeLabel}"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="End"
+                   Text="Use"
+                   BackgroundColor="Transparent"
+                   TextColor="White"/>
+            </Frame>
+            <Frame Background="Transparent" HeightRequest="100">
+                <Frame.GestureRecognizers>
+                    <DropGestureRecognizer DropCommand="{Binding ChangeStatusCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>

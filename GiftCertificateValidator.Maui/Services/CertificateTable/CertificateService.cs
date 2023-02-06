@@ -12,27 +12,27 @@ internal class CertificateService : ICertificateService
         _certificateRepository = certificateRepository;
     }
 
-    public async Task<GiftCertificate> GetCertificateAsync(string certificateCode)
+    public async Task<BaseResponse<GiftCertificate>> GetCertificateAsync(string certificateCode)
     {
         return await _certificateRepository.GetCertificateAsync(certificateCode);
     }
 
-    public async Task<IEnumerable<GiftCertificate>> GetCertificatesAsync()
+    public async Task<BaseResponse<IEnumerable<GiftCertificate>>> GetCertificatesAsync()
     {
         return await _certificateRepository.GetCertificatesAsync();
     }
 
-    public async Task<bool> AddCertificateAsync(GiftCertificate certificate)
+    public async Task<BaseResponse<bool>> AddCertificateAsync(GiftCertificate certificate)
     {
         return await _certificateRepository.AddCertificateAsync(certificate);
     }
 
-    public async Task<bool> UpdateCertificateAsync(GiftCertificate certificate)
+    public async Task<BaseResponse<bool>> UpdateCertificateAsync(GiftCertificate certificate)
     {
         return await _certificateRepository.UpdateCertificateAsync(certificate);
     }
 
-    public async Task<bool> ChangeCertificateStatusAsync(string certificateCode)
+    public async Task<BaseResponse<bool>> ChangeCertificateStatusAsync(string certificateCode)
     {
         return await _certificateRepository.ChangeCertificateStatusAsync(certificateCode);
     }

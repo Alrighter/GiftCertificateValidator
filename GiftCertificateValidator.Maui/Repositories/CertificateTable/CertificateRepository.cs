@@ -13,81 +13,131 @@ public class CertificateRepository : ICertificateRepository
         _databaseConnection = databaseConnection;
     }
 
-    public async Task<GiftCertificate> GetCertificateAsync(string certificateCode)
+    public async Task<BaseResponse<GiftCertificate>> GetCertificateAsync(string certificateCode)
     { 
         try
         {
             var connection = await _databaseConnection.GetConnectionAsync();
             var certificate = await connection.Table<GiftCertificate>().FirstOrDefaultAsync(x => x.Code == certificateCode);
-            return certificate;
+            return new BaseResponse<GiftCertificate>
+            {
+                Data = certificate,
+                Success = true,
+                Message = "Success"
+            };
         }
         catch (Exception e)
         {
             Debug.WriteLine("Error getting certificate: " + e.Message);
-            return new GiftCertificate();
+            return new BaseResponse<GiftCertificate>
+            {
+                Data = new GiftCertificate(),
+                Success = false,
+                Message = "Error getting certificate"
+            };
         }
     }
 
-    public async Task<IEnumerable<GiftCertificate>> GetCertificatesAsync()
+    public async Task<BaseResponse<IEnumerable<GiftCertificate>>> GetCertificatesAsync()
     {
         try
         {
             var connection = await _databaseConnection.GetConnectionAsync();
             var certificates = await connection.Table<GiftCertificate>().ToListAsync();
-            return certificates;
+            return new BaseResponse<IEnumerable<GiftCertificate>>
+            {
+                Data = certificates,
+                Success = true,
+                Message = "Success"
+            };
         }
         catch (Exception e)
         {
             Debug.WriteLine("Error getting certificates: " + e.Message);
-            return new List<GiftCertificate>();
+            return new BaseResponse<IEnumerable<GiftCertificate>>
+            {
+            Data = new List<GiftCertificate>(),
+            Success = false,
+            Message = "Error getting certificates"
+            };
         }
     }
 
-    public async Task<bool> AddCertificateAsync(GiftCertificate certificate)
+    public async Task<BaseResponse<bool>> AddCertificateAsync(GiftCertificate certificate)
     {
         try
         {
             var connection = await _databaseConnection.GetConnectionAsync();
             var result = await connection.InsertAsync(certificate);
-            return result > 0;
+            return new BaseResponse<bool>
+            {
+                Data = result > 0,
+                Success = true,
+                Message = "Success"
+            };
         }
         catch (Exception e)
         {
             Debug.WriteLine("Error adding certificate: " + e.Message);
-            return false;
+            return new BaseResponse<bool>
+            {
+                Data = false,
+                Success = false,
+                Message = e.Message
+            };
         }
     }
 
-    public async Task<bool> UpdateCertificateAsync(GiftCertificate certificate)
+    public async Task<BaseResponse<bool>> UpdateCertificateAsync(GiftCertificate certificate)
     {
         try
         {
             var connection = await _databaseConnection.GetConnectionAsync();
             var result = await connection.UpdateAsync(certificate);
-            return result > 0;
+            return new BaseResponse<bool>
+            {
+                Data = result > 0,
+                Success = true,
+                Message = "Success"
+            };
         }
         catch (Exception e)
         {
             Debug.WriteLine("Error updating certificate: " + e.Message);
-            return false;
+            return new BaseResponse<bool>
+            {
+                Data = false,
+                Success = false,
+                Message = e.Message
+            };
         }
     }
 
-    public async Task<bool> ChangeCertificateStatusAsync(string certificateCode)
+    public async Task<BaseResponse<bool>> ChangeCertificateStatusAsync(string certificateCode)
     {
         try
         {
             var connection = await _databaseConnection.GetConnectionAsync();
             var certificate = await connection.Table<GiftCertificate>().FirstOrDefaultAsync(x => x.Code == certificateCode);
-            certificate.IsUsed = certificate.IsUsed == false;
+            certificate.IsUsed = true;
             certificate.DateUsed = DateTime.Now;
             var result = await connection.UpdateAsync(certificate);
-            return result > 0;
+            return new BaseResponse<bool>
+            {
+                Data = result > 0,
+                Success = true,
+                Message = "Success"
+            };
         }
         catch (Exception e)
         {
             Debug.WriteLine("Error changing certificate status: " + e.Message);
-            return false;
+            return new BaseResponse<bool>
+            {
+                Data = false,
+                Success = false,
+                Message = e.Message
+            };
         }
     }
 }

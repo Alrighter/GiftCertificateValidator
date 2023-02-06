@@ -14,7 +14,7 @@ public partial class CheckCertificateViewModel : BaseViewModel
     public CheckCertificateViewModel(ICertificateService certificateService)
     {
         _certificateService = certificateService;
-        Title = "Scan GiftCertificate";
+        Title = "Check certificate";
     }
 
     public string ScannedQr
@@ -36,10 +36,21 @@ public partial class CheckCertificateViewModel : BaseViewModel
         if (string.IsNullOrWhiteSpace(ScannedQr))
             return;
 
-        Certificate = await _certificateService.GetCertificateAsync(ScannedQr);
-
-        if (Certificate == null)
+        var response = await _certificateService.GetCertificateAsync(ScannedQr);
+        
+        if (!response.Success)
+        {
+            await Shell.Current.DisplayAlert("Error", "Error loading certificate", "OK");
             return;
+        }
+        
+        Certificate = response.Data;
+        
+        if (Certificate == null)
+        {
+            await Shell.Current.DisplayAlert("Error", "Certificate not found", "OK");
+            return;
+        }
 
         await Shell.Current.GoToAsync($"{nameof(DetailsPage)}",
             true, new Dictionary<string, object>
@@ -47,5 +58,4 @@ public partial class CheckCertificateViewModel : BaseViewModel
                 {"Certificate", Certificate}
             });
     }
-
 }

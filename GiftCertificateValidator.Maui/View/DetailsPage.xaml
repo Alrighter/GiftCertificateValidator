@@ -9,12 +9,11 @@
 
     <Shell.TitleView>
         <StackLayout>
-            <Button ImageSource="edit.png"
-                    HorizontalOptions="End"
+            <Button HorizontalOptions="End"
                     VerticalOptions="Center"
-                    BackgroundColor="Transparent"
-                    Margin="10"
-                    Command="{Binding UpdateCertificateCommand}"/>
+                    Background="Transparent"
+                    Command="{Binding UpdateCertificateCommand}" 
+                    ImageSource="edit_white.png"/>
         </StackLayout>
     </Shell.TitleView>
 
@@ -48,7 +47,6 @@
                     <Label Text="DateUsed" Style="{StaticResource MediumLabel}" />
                     <Entry IsEnabled="False" Text="{Binding GiftCertificate.DateUsed, StringFormat='{}{0:dd/MM/yyyy об HH:mm}'}" Style="{StaticResource LargeLabel}"/>
                 </VerticalStackLayout>
-
             </Frame>
             <Frame>
                 <Frame.Style>
@@ -74,6 +72,7 @@
                    Text="Use"
                    BackgroundColor="Transparent"
                    TextColor="White"/>
+                
             </Frame>
             <Frame Background="Transparent" HeightRequest="100">
                 <Frame.GestureRecognizers>

@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using GiftCertificateValidator.Maui.Model;
 using GiftCertificateValidator.Maui.Services.CertificateTable;
-using GiftCertificateValidator.Maui.View;
 
 namespace GiftCertificateValidator.Maui.ViewModel;
 
